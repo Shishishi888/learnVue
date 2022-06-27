@@ -10,7 +10,9 @@
 
 <body>
     <div id="app">
-
+        <div v-for="member in memberList">
+            {{member.name}} --- {{member.age}}
+        </div>
     </div>
     <script src="../vue/vue.min.js"></script>
     <script src="../axios/axios.min.js"></script>
@@ -28,12 +30,16 @@
                 getMemberList() {
                     // 使用axios发送ajax请求
                     axios.get("../json/data.json")
+                        // 请求成功执行then方法；response代表返回的请求数据
                         .then(response => {  // 箭头函数
-                            console.log("***"+response);
-                        })  // 请求成功执行then方法；response代表返回的请求数据
+                            // console.log("***"+response);
+                            this.memberList = response.data.data.items;
+                            console.log(this.memberList);
+                        })  
+                        // 请求失败执行catch方法；error代表失败信息
                         .catch(error => {  // 箭头函数
 
-                        })  // 请求失败执行catch方法；error代表失败信息
+                        })  
                 }
             }
         })
