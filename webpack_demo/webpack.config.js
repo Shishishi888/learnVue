@@ -4,6 +4,15 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),  // 输出路径，_dirname：当前文件所在路径
         // filename: 'bundle_pro.js'  // 输出文件
-        filename: 'bundle_dev.js'  // 输出文件
+        // filename: 'bundle_dev.js'  // 输出文件
+        filename: 'bundle.js'  // 输出文件
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,  // 打包规则应用到以css结尾的文件上
+                use: ['style-loader', 'css-loader'] 
+            }
+        ]
     }
 }
